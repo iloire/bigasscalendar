@@ -8,17 +8,39 @@ interface CalendarProps {
   title?: string;
   language?: 'en' | 'es';
   theme: Theme;
+  cellHeight?: 'compact' | 'medium' | 'large' | 'extra-large';
 }
 
-export default function Calendar({ year, title, language = 'en', theme }: CalendarProps) {
+const heightClasses = {
+  'compact': 'min-h-[3rem]',
+  'medium': 'min-h-[4rem]',
+  'large': 'min-h-[5rem]',
+  'extra-large': 'min-h-[6rem]',
+};
+
+const heightPrintStyles = {
+  'compact': '2.5cm',
+  'medium': '3.5cm',
+  'large': '4.5cm',
+  'extra-large': '5.5cm',
+};
+
+export default function Calendar({ year, title, language = 'en', theme, cellHeight = 'medium' }: CalendarProps) {
   const calendar = generateYearCalendar(year, language);
 
   return (
-    <div className="w-full bg-white p-4">
+    <div className="w-full bg-white p-4 print-calendar">
+      <style jsx>{`
+        @media print {
+          .print-cell {
+            min-height: ${heightPrintStyles[cellHeight]} !important;
+          }
+        }
+      `}</style>
       {/* Header */}
       <div className="mb-4">
         <h1
-          className="text-[3.5rem] leading-none font-black tracking-tight uppercase text-center"
+          className="text-[3.5rem] leading-none font-black tracking-tight uppercase text-center print-title"
           style={{ fontFamily: 'Impact, Arial Black, sans-serif', color: theme.colors.primary }}
         >
           {title || `THE BIG A## CALENDAR ${year}`}
@@ -40,7 +62,7 @@ export default function Calendar({ year, title, language = 'en', theme }: Calend
               style={{ borderColor: theme.colors.border }}
             >
               <span
-                className="font-black text-sm tracking-tight [writing-mode:vertical-rl] rotate-180"
+                className="font-black text-sm tracking-tight [writing-mode:vertical-rl] rotate-180 print-month-label"
                 style={{ fontFamily: 'Impact, Arial Black, sans-serif', color: theme.colors.monthLabel }}
               >
                 {month.abbreviation}
@@ -51,7 +73,7 @@ export default function Calendar({ year, title, language = 'en', theme }: Calend
             {month.days.map((day, dayIndex) => (
               <div
                 key={dayIndex}
-                className="border-r min-h-[4rem] p-1 relative"
+                className={`border-r ${heightClasses[cellHeight]} p-1 relative print-cell`}
                 style={{
                   borderColor: `${theme.colors.border}4D`,
                   backgroundColor: day && day.isWeekend ? theme.colors.weekendBg : "white",
@@ -61,13 +83,13 @@ export default function Calendar({ year, title, language = 'en', theme }: Calend
                 {day && (
                   <>
                     <div
-                      className="absolute top-1 left-1.5 text-[0.5rem] font-light leading-none opacity-40"
+                      className="absolute top-1 left-1.5 text-[0.5rem] font-light leading-none opacity-40 print-day-number"
                       style={{ color: theme.colors.dayNumber }}
                     >
                       {day.date}
                     </div>
                     <div
-                      className="text-[0.5rem] font-medium leading-tight text-center mt-5 tracking-wide"
+                      className="text-[0.5rem] font-medium leading-tight text-center mt-5 tracking-wide print-day-name"
                       style={{ color: theme.colors.dayName }}
                     >
                       {day.dayOfWeekName}

@@ -9,6 +9,7 @@ export default function Home() {
   const [title, setTitle] = useState("");
   const [language, setLanguage] = useState<'en' | 'es'>('en');
   const [themeId, setThemeId] = useState('blue');
+  const [cellHeight, setCellHeight] = useState<'compact' | 'medium' | 'large' | 'extra-large'>('medium');
 
   const handlePrint = () => {
     window.print();
@@ -48,6 +49,22 @@ export default function Home() {
               >
                 <option value="en">English</option>
                 <option value="es">Español</option>
+              </select>
+            </div>
+            <div className="flex-1">
+              <label htmlFor="cellHeight" className="block text-sm font-medium text-gray-700 mb-1">
+                Cell Height
+              </label>
+              <select
+                id="cellHeight"
+                value={cellHeight}
+                onChange={(e) => setCellHeight(e.target.value as 'compact' | 'medium' | 'large' | 'extra-large')}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="compact">Compact (2.5cm)</option>
+                <option value="medium">Medium (3.5cm)</option>
+                <option value="large">Large (4.5cm)</option>
+                <option value="extra-large">Extra Large (5.5cm)</option>
               </select>
             </div>
             <div className="flex-[2]">
@@ -104,7 +121,7 @@ export default function Home() {
 
       {/* Calendar */}
       <div className="w-full print:w-full">
-        <Calendar year={year} title={title || undefined} language={language} theme={currentTheme} />
+        <Calendar year={year} title={title || undefined} language={language} theme={currentTheme} cellHeight={cellHeight} />
       </div>
     </div>
   );
