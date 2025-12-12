@@ -1,7 +1,7 @@
 {
   "name": "bigasscalendar",
   "version": "1.0.0",
-  "description": "",
+  "description": "Big Ass Calendar - A free yearly calendar generator for planning goals and tracking inspiration. Create customizable, printable calendars with multiple themes and bilingual support.",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
@@ -9,8 +9,19 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "yearly calendar",
+    "big ass calendar",
+    "goals calendar",
+    "inspiration calendar",
+    "annual planner",
+    "printable calendar",
+    "goal tracking",
+    "year planner",
+    "wall calendar",
+    "motivational calendar"
+  ],
+  "author": "Big Ass Calendar",
   "license": "ISC",
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",

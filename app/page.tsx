@@ -54,9 +54,30 @@ export default function Home() {
   const currentTheme = getTheme(themeId);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <main className="min-h-screen bg-gray-100">
+      {/* SEO Content - hidden but accessible to search engines */}
+      <div className="sr-only">
+        <h1>Big Ass Calendar - Yearly Calendar Planner for Goals and Inspiration</h1>
+        <p>
+          Create your perfect yearly calendar with our free online tool. Perfect for goal tracking,
+          inspiration planning, and organizing your entire year at a glance. Features customizable
+          color themes, bilingual support (English and Spanish), and print-ready formatting.
+        </p>
+        <h2>Features:</h2>
+        <ul>
+          <li>Full year calendar view with all 12 months</li>
+          <li>Customizable color themes for personal style</li>
+          <li>Bilingual support: English and Spanish</li>
+          <li>Print-optimized for large format printing</li>
+          <li>Perfect for goal setting and tracking</li>
+          <li>Inspiration calendar for daily motivation</li>
+          <li>Weekend highlighting for better planning</li>
+          <li>Customizable titles and year selection</li>
+        </ul>
+      </div>
+
       {/* Controls - hidden during print */}
-      <div className="no-print bg-white shadow-md sticky top-0 z-10" style={{ padding: '1rem' }}>
+      <header className="no-print bg-white shadow-md sticky top-0 z-10" style={{ padding: '1rem' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
             <div>
@@ -161,12 +182,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* Calendar */}
-      <div className="w-full print:w-full">
+      <section className="w-full print:w-full" aria-label="Yearly Calendar">
         <Calendar year={year} title={title || undefined} language={language} theme={currentTheme} cellHeight={cellHeight} />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
