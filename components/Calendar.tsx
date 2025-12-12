@@ -29,7 +29,7 @@ export default function Calendar({ year, title, language = 'en', theme, cellHeig
   const calendar = generateYearCalendar(year, language);
 
   return (
-    <div className="w-full bg-white p-4 print-calendar">
+    <div className="w-full bg-white print-calendar" style={{ padding: '0.5rem 0.5rem 0.5rem 0.5rem' }}>
       <style jsx>{`
         @media print {
           .print-cell {
@@ -38,14 +38,12 @@ export default function Calendar({ year, title, language = 'en', theme, cellHeig
         }
       `}</style>
       {/* Header */}
-      <div className="mb-4">
-        <h1
-          className="text-[3.5rem] leading-none font-black tracking-tight uppercase text-center print-title"
-          style={{ fontFamily: 'Impact, Arial Black, sans-serif', color: theme.colors.primary }}
-        >
-          {title || `THE BIG A## CALENDAR ${year}`}
-        </h1>
-      </div>
+      <h1
+        className="text-[3.5rem] leading-none font-black tracking-tight uppercase text-center print-title"
+        style={{ fontFamily: 'Impact, Arial Black, sans-serif', color: theme.colors.primary, margin: 0, padding: 0, marginBottom: '0.25rem' }}
+      >
+        {title || `THE BIG A## CALENDAR ${year}`}
+      </h1>
 
       {/* Calendar Grid */}
       <div className="border-[3px]" style={{ borderColor: theme.colors.border }}>
