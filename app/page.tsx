@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Calendar from "@/components/Calendar";
 import { themes, getTheme } from "@/lib/themes";
 
@@ -10,6 +10,42 @@ export default function Home() {
   const [language, setLanguage] = useState<'en' | 'es'>('en');
   const [themeId, setThemeId] = useState('blue');
   const [cellHeight, setCellHeight] = useState<'compact' | 'medium' | 'large' | 'extra-large'>('medium');
+
+  // Load settings from localStorage on mount
+  useEffect(() => {
+    const savedYear = localStorage.getItem('calendar-year');
+    const savedTitle = localStorage.getItem('calendar-title');
+    const savedLanguage = localStorage.getItem('calendar-language');
+    const savedTheme = localStorage.getItem('calendar-theme');
+    const savedCellHeight = localStorage.getItem('calendar-cell-height');
+
+    if (savedYear) setYear(parseInt(savedYear));
+    if (savedTitle) setTitle(savedTitle);
+    if (savedLanguage) setLanguage(savedLanguage as 'en' | 'es');
+    if (savedTheme) setThemeId(savedTheme);
+    if (savedCellHeight) setCellHeight(savedCellHeight as 'compact' | 'medium' | 'large' | 'extra-large');
+  }, []);
+
+  // Save settings to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('calendar-year', year.toString());
+  }, [year]);
+
+  useEffect(() => {
+    localStorage.setItem('calendar-title', title);
+  }, [title]);
+
+  useEffect(() => {
+    localStorage.setItem('calendar-language', language);
+  }, [language]);
+
+  useEffect(() => {
+    localStorage.setItem('calendar-theme', themeId);
+  }, [themeId]);
+
+  useEffect(() => {
+    localStorage.setItem('calendar-cell-height', cellHeight);
+  }, [cellHeight]);
 
   const handlePrint = () => {
     window.print();
