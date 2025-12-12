@@ -83,7 +83,7 @@ export default function Calendar({ year, title, language = 'en', theme, cellHeig
                 {day && (
                   <>
                     <div
-                      className="absolute top-1 left-1.5 text-[0.5rem] font-light leading-none opacity-40 print-day-number"
+                      className="absolute top-1 left-1.5 text-[0.65rem] font-semibold leading-none opacity-70 print-day-number"
                       style={{ color: theme.colors.dayNumber }}
                     >
                       {day.date}

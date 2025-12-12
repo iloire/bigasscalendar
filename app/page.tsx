@@ -108,7 +108,9 @@ export default function Home() {
                   style={{
                     backgroundColor: theme.colors.primary,
                     color: 'white',
-                    ringColor: theme.colors.primary,
+                    ...(themeId === theme.id && {
+                      '--tw-ring-color': theme.colors.primary,
+                    } as React.CSSProperties),
                   }}
                 >
                   {theme.name}
