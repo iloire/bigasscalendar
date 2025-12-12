@@ -83,14 +83,14 @@ export default function Calendar({ year, title, language = 'en', theme, cellHeig
                 {day && (
                   <>
                     <div
-                      className="absolute top-1 left-1.5 text-[0.65rem] font-semibold leading-none opacity-70 print-day-number"
-                      style={{ color: theme.colors.dayNumber }}
+                      className="absolute text-[0.40rem] font-bold leading-none print-day-number"
+                      style={{ color: theme.colors.dayNumber, top: '0.10rem', left: '0.08rem' }}
                     >
                       {day.date}
                     </div>
                     <div
-                      className="text-[0.5rem] font-medium leading-tight text-center mt-5 tracking-wide print-day-name"
-                      style={{ color: theme.colors.dayName }}
+                      className="absolute text-[0.4rem] font-medium leading-tight text-center mt-5 tracking-wide print-day-name"
+                      style={{ color: theme.colors.dayName,  top: '0.5rem', left: '0.08rem'  }}
                     >
                       {day.dayOfWeekName}
                     </div>

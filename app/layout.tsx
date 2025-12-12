@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-jetbrains-mono",
 });
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={jetbrainsMono.className}>{children}</body>
     </html>
   );
 }
