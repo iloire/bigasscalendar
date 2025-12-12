@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss init:*)",
+      "Bash(npm run dev:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: create Big Ass Calendar generator with theming system\n\nImplemented a Next.js application that generates and prints year-long calendars with the following features:\n\n- Year-long calendar view with all 12 months in a single grid layout\n- Weekend highlighting (Saturdays and Sundays)\n- Bilingual support (English and Spanish) for day names and month labels\n- 8 color themes: Classic Blue, Forest Green, Royal Purple, Bold Red, Sunset Orange, Pretty Pink, Ocean Teal, and Monochrome\n- Customizable year and title\n- Inter font for clean, professional typography\n- Vertical month labels for space optimization\n- Print-optimized CSS for large format printing (A1 landscape)\n- Responsive grid with individual day cells for note-taking\n- Day numbers in top-left corner (subtle styling)\n- Day names centered in each cell\n\nTech stack:\n- Next.js 16 with App Router\n- TypeScript\n- Tailwind CSS 4.x with @tailwindcss/postcss\n- React 19\nEOF\n)\")",
+      "Bash(git commit:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

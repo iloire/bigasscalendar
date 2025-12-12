@@ -61,13 +61,13 @@ export default function Calendar({ year, title, language = 'en', theme }: Calend
                 {day && (
                   <>
                     <div
-                      className="absolute top-0.5 left-1 text-[0.5rem] font-light leading-none opacity-40"
+                      className="absolute top-1 left-1.5 text-[0.5rem] font-light leading-none opacity-40"
                       style={{ color: theme.colors.dayNumber }}
                     >
                       {day.date}
                     </div>
                     <div
-                      className="text-[0.55rem] font-medium leading-tight text-center mt-5 tracking-wide"
+                      className="text-[0.5rem] font-medium leading-tight text-center mt-5 tracking-wide"
                       style={{ color: theme.colors.dayName }}
                     >
                       {day.dayOfWeekName}

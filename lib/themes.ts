@@ -19,7 +19,7 @@ export const themes: Theme[] = [
     colors: {
       primary: "#0080FF",
       border: "#0080FF",
-      weekendBg: "#B3D9FF",
+      weekendBg: "#E3F2FF",
       text: "#000000",
       monthLabel: "#0080FF",
       dayNumber: "#9CA3AF",
@@ -32,7 +32,7 @@ export const themes: Theme[] = [
     colors: {
       primary: "#059669",
       border: "#059669",
-      weekendBg: "#A7F3D0",
+      weekendBg: "#D1FAE5",
       text: "#000000",
       monthLabel: "#059669",
       dayNumber: "#9CA3AF",
@@ -45,7 +45,7 @@ export const themes: Theme[] = [
     colors: {
       primary: "#7C3AED",
       border: "#7C3AED",
-      weekendBg: "#DDD6FE",
+      weekendBg: "#EDE9FE",
       text: "#000000",
       monthLabel: "#7C3AED",
       dayNumber: "#9CA3AF",
@@ -58,7 +58,7 @@ export const themes: Theme[] = [
     colors: {
       primary: "#DC2626",
       border: "#DC2626",
-      weekendBg: "#FECACA",
+      weekendBg: "#FEE2E2",
       text: "#000000",
       monthLabel: "#DC2626",
       dayNumber: "#9CA3AF",
@@ -71,7 +71,7 @@ export const themes: Theme[] = [
     colors: {
       primary: "#EA580C",
       border: "#EA580C",
-      weekendBg: "#FED7AA",
+      weekendBg: "#FFEDD5",
       text: "#000000",
       monthLabel: "#EA580C",
       dayNumber: "#9CA3AF",
@@ -84,7 +84,7 @@ export const themes: Theme[] = [
     colors: {
       primary: "#DB2777",
       border: "#DB2777",
-      weekendBg: "#FBCFE8",
+      weekendBg: "#FCE7F3",
       text: "#000000",
       monthLabel: "#DB2777",
       dayNumber: "#9CA3AF",
@@ -97,7 +97,7 @@ export const themes: Theme[] = [
     colors: {
       primary: "#0D9488",
       border: "#0D9488",
-      weekendBg: "#99F6E4",
+      weekendBg: "#CCFBF1",
       text: "#000000",
       monthLabel: "#0D9488",
       dayNumber: "#9CA3AF",
@@ -110,7 +110,7 @@ export const themes: Theme[] = [
     colors: {
       primary: "#000000",
       border: "#000000",
-      weekendBg: "#E5E7EB",
+      weekendBg: "#F3F4F6",
       text: "#000000",
       monthLabel: "#000000",
       dayNumber: "#9CA3AF",
