@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
+import Analytics from "@/components/Analytics";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -68,6 +69,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <StructuredData />
+        <Analytics />
       </head>
       <body className={jetbrainsMono.className}>{children}</body>
     </html>
