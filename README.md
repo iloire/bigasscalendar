@@ -6,7 +6,7 @@ Big Ass Calendar is a Next.js app that generates a customizable, print-optimized
 year planner — 12 months as 12 rows, every day as a column — designed to be
 printed at A1 and stuck on a wall where you can actually see it.
 
-**Live demo → [bigasscalendar.vercel.app](https://bigasscalendar.vercel.app/)**
+**Live demo → [iloire.github.io/bigasscalendar](https://iloire.github.io/bigasscalendar/)**
 
 ![Big Ass Calendar — Classic Blue theme, 2026](docs/screenshot.png)
 
@@ -90,24 +90,35 @@ Copy `.env.example` to `.env.local`. The only variable is optional:
 
 ## Deployment
 
-Currently deployed on **Vercel** at
-[bigasscalendar.vercel.app](https://bigasscalendar.vercel.app/) — push to `main`
-and Vercel builds it.
+The app is fully client-side — no API routes, no server actions — so it builds
+to plain static HTML and can be hosted anywhere.
 
-The app is fully client-side (no API routes, no server actions), so it can also
-be exported as static HTML and hosted anywhere — GitHub Pages, S3, Netlify:
+### GitHub Pages (current)
 
-```ts
-// next.config.ts
-const nextConfig: NextConfig = {
-  output: "export",
-  images: { unoptimized: true },
-};
-```
+[`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)
+builds a static export on every push to `main` and publishes it to
+<https://iloire.github.io/bigasscalendar/>. Nothing to run by hand.
+
+To serve it from a custom domain (e.g. `bigasscalendar.com`) instead, blank out
+`NEXT_PUBLIC_BASE_PATH` in the workflow and add a `public/CNAME` file — the base
+path only exists because project pages live under a `/<repo>/` subpath.
+
+Set a `NEXT_PUBLIC_GA_MEASUREMENT_ID` repository **variable** to enable
+analytics on the Pages build; leave it unset and no analytics ship.
+
+### Anywhere else
 
 ```bash
-npm run build   # emits ./out
+STATIC_EXPORT=true npm run build   # emits ./out — drop it on any static host
 ```
+
+`next.config.ts` reads two env vars, so the plain `npm run build` used by
+Vercel / `npm start` is unaffected:
+
+| Variable | Effect |
+| --- | --- |
+| `STATIC_EXPORT=true` | turn on `output: "export"` and emit `./out` |
+| `NEXT_PUBLIC_BASE_PATH` | serve from a subpath, e.g. `/bigasscalendar` |
 
 ## Project structure
 
