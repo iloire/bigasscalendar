@@ -30,7 +30,6 @@ jobs:
 
       - name: Build static export
         env:
-          STATIC_EXPORT: "true"
           # Project pages are served from https://<user>.github.io/bigasscalendar/.
           # Blank this out if you point a custom domain (e.g. bigasscalendar.com)
           # at Pages and add a public/CNAME file.

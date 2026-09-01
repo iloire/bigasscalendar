@@ -58,8 +58,9 @@ npm run dev
 Open <http://localhost:3000>.
 
 ```bash
-npm run build && npm start   # production build
-npm run lint                 # eslint
+npm run build      # static export -> ./out
+npx serve out      # preview the built site
+npm run lint       # eslint
 ```
 
 ### Environment variables
@@ -108,17 +109,9 @@ analytics on the Pages build; leave it unset and no analytics ship.
 
 ### Anywhere else
 
-```bash
-STATIC_EXPORT=true npm run build   # emits ./out — drop it on any static host
-```
-
-`next.config.ts` reads two env vars, so the plain `npm run build` used by
-Vercel / `npm start` is unaffected:
-
-| Variable | Effect |
-| --- | --- |
-| `STATIC_EXPORT=true` | turn on `output: "export"` and emit `./out` |
-| `NEXT_PUBLIC_BASE_PATH` | serve from a subpath, e.g. `/bigasscalendar` |
+`npm run build` emits a self-contained `./out` — drop it on S3, Netlify, nginx,
+anything that serves files. Set `NEXT_PUBLIC_BASE_PATH` if the host puts the
+site under a subpath rather than at the domain root.
 
 ## Project structure
 
