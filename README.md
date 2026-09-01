@@ -1,81 +1,130 @@
 # Big Ass Calendar
 
-A Next.js application that generates customizable, print-optimized year-long calendars. Perfect for wall-mounted planning and large format printing.
+A whole year on one sheet of paper.
+
+Big Ass Calendar is a Next.js app that generates a customizable, print-optimized
+year planner — 12 months as 12 rows, every day as a column — designed to be
+printed at A1 and stuck on a wall where you can actually see it.
+
+**Live demo → [bigasscalendar.vercel.app](https://bigasscalendar.vercel.app/)**
+
+![Big Ass Calendar — Classic Blue theme, 2026](docs/screenshot.png)
+
+## Why
+
+Month-grid calendars hide the year from you. A single continuous strip per month
+makes streaks, gaps, trips, deadlines and habits obvious at a glance — which is
+what you want when the thing is hanging on a wall and you're planning goals
+rather than checking today's date.
 
 ## Features
 
-- **Full Year View**: All 12 months displayed in a single grid layout
-- **Weekend Highlighting**: Saturdays and Sundays are visually distinguished
-- **Bilingual Support**: Toggle between English and Spanish
-- **8 Color Themes**: Classic Blue, Forest Green, Royal Purple, Bold Red, Sunset Orange, Pretty Pink, Ocean Teal, and Monochrome
-- **Customizable Cell Heights**: Choose between Compact (2.5cm), Medium (3.5cm), Large (4.5cm), or Extra Large (5.5cm)
-- **Custom Titles**: Personalize your calendar with a custom title
-- **Print Optimized**: Designed for A1 landscape printing with proper page breaks and sizing
+- **Full year, one page** — all 12 months in a single continuous grid
+- **Weekend highlighting** — Saturdays and Sundays are visually distinguished
+- **8 color themes** — Classic Blue, Forest Green, Royal Purple, Bold Red,
+  Sunset Orange, Pretty Pink, Ocean Teal, Monochrome
+- **Bilingual** — English and Spanish day/month names
+- **Adjustable cell height** — Compact (2.5 cm), Medium (3.5 cm),
+  Large (4.5 cm), Extra Large (5.5 cm) to match your paper size
+- **Custom title** — defaults to `THE BIG A## CALENDAR <year>`, override with
+  anything you like
+- **Any year** — 1900 to 2100, leap years included
+- **Settings persist** — year, title, language, theme and cell height are saved
+  to `localStorage`, so your setup is still there next time
+- **Print optimized** — A1 landscape, proper page breaks, backgrounds preserved
 
-## Tech Stack
+<details>
+<summary>Another theme (Sunset Orange)</summary>
 
-- Next.js 16 (App Router)
-- React 19
-- TypeScript
-- Tailwind CSS 4.x
-- Inter font
+![Big Ass Calendar — Sunset Orange theme](docs/screenshot-theme-orange.png)
 
-## Getting Started
+</details>
 
-### Prerequisites
+## Tech stack
 
-- Node.js 18+
-- npm or yarn
+- Next.js 16 (App Router) · React 19 · TypeScript
+- Tailwind CSS 4
+- No database, no API routes, no accounts — everything runs client-side
 
-### Installation
+## Getting started
+
+Requires Node.js 18+.
 
 ```bash
 npm install
-```
-
-### Development
-
-```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Building
+Open <http://localhost:3000>.
 
 ```bash
-npm run build
-npm start
+npm run build && npm start   # production build
+npm run lint                 # eslint
 ```
+
+### Environment variables
+
+Copy `.env.example` to `.env.local`. The only variable is optional:
+
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 measurement ID. Analytics only load when it is set **and** `NODE_ENV=production`, so local development never reports. |
 
 ## Usage
 
-1. **Select Year**: Choose any year between 1900 and 2100
-2. **Choose Language**: Switch between English and Spanish day/month names
-3. **Select Cell Height**: Adjust cell height based on your printing needs
-4. **Pick a Theme**: Select from 8 color themes to match your style
-5. **Add Custom Title** (optional): Replace the default title with your own
-6. **Print**: Click "Print Calendar" to generate a print-ready version
+1. **Year** — pick any year from 1900 to 2100
+2. **Language** — English or Spanish day/month names
+3. **Cell height** — taller cells if you plan to write in them by hand
+4. **Theme** — pick one of the 8 color schemes
+5. **Custom title** — optional; leave blank for the default
+6. **Print** — hit *Print Calendar* for a print-ready render
 
-## Printing Tips
+## Printing tips
 
-- The calendar is optimized for A1 landscape format
-- Use "Print to PDF" if you want to save digitally before printing
-- Adjust print margins to "None" for best results
-- Ensure "Background Graphics" is enabled in print settings
+- Designed for **A1 landscape**. A0 works too (bigger cells); A3 is readable but
+  tight for handwriting — drop to Compact cell height.
+- Set print margins to **None**.
+- Enable **Background Graphics** in print settings, or the weekend shading and
+  theme colors disappear.
+- Use *Print to PDF* first if you're sending the file to a print shop.
 
-## Project Structure
+## Deployment
+
+Currently deployed on **Vercel** at
+[bigasscalendar.vercel.app](https://bigasscalendar.vercel.app/) — push to `main`
+and Vercel builds it.
+
+The app is fully client-side (no API routes, no server actions), so it can also
+be exported as static HTML and hosted anywhere — GitHub Pages, S3, Netlify:
+
+```ts
+// next.config.ts
+const nextConfig: NextConfig = {
+  output: "export",
+  images: { unoptimized: true },
+};
+```
+
+```bash
+npm run build   # emits ./out
+```
+
+## Project structure
 
 ```
 app/
-├── globals.css       # Global styles and print CSS
-├── layout.tsx        # Root layout
-└── page.tsx          # Main page with controls
+├── globals.css        # global styles + print CSS
+├── layout.tsx         # root layout, SEO metadata, favicons
+├── page.tsx           # controls + state (localStorage persistence)
+└── sitemap.ts         # generated sitemap
 components/
-└── Calendar.tsx      # Calendar grid component
+├── Calendar.tsx       # the year grid
+├── Analytics.tsx      # GA4, production-only
+└── StructuredData.tsx # JSON-LD for search engines
 lib/
-├── calendar.ts       # Calendar generation logic
-└── themes.ts         # Theme definitions
+├── calendar.ts        # year/month/day generation, i18n day names
+└── themes.ts          # the 8 color themes
+docs/                  # README screenshots
 ```
 
 ## License
